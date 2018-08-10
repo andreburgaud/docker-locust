@@ -1,0 +1,5 @@
+# Files not needed for building the Docker image
+LICENSE.md
+README.md
+Makefile
+__pycache__
