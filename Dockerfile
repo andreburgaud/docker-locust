@@ -1,6 +1,6 @@
 FROM       python:3.7-alpine3.8
 
-ARG        locust_version
+ARG        locust_version=0.9.0
 ENV        LOCUST_VERSION=$locust_version
 
 LABEL      locustio.version=$LOCUSTIO_VERSION
