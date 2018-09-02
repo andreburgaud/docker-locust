@@ -15,13 +15,14 @@ https://locust.io/
 # Usage
 
 ```
-docker run --rm -it -v `pwd`:/scenarios -p 8089:8089 andreburgaud/locust locust -f /scenarios/scenario.py --host=https://example.com
+$ docker pull docker pull andreburgaud/locust
+$ docker run --rm -it -v `pwd`:/scenarios -p 8089:8089 andreburgaud/locust locust -f /scenarios/scenario.py --host=https://example.com
 ```
 
-# Create Image
+# Create Local Image
 
 ```
-$ IMAGE_TAG=0.8.1 make build
+$ IMAGE_TAG=0.9.0 make build
 ```
 
 # License

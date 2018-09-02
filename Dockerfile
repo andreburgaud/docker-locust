@@ -1,11 +1,13 @@
 FROM       python:3.7-alpine3.8
 
-ENV        LOCUSTIO_VERSION=0.8.1
+ARG        locust_version
+ENV        LOCUST_VERSION=$locust_version
 
 LABEL      locustio.version=$LOCUSTIO_VERSION
 LABEL      python.version=$PYTHON_VERSION
+LABEL      maintainer=andre.burgaud@gmail.com
 
-RUN apk --no-cache add --virtual build-dependencies \
+RUN apk add --no-cache --virtual build-dependencies \
       gcc \
       g++ \
       libffi-dev \
@@ -16,9 +18,10 @@ RUN apk --no-cache add --virtual build-dependencies \
       openssl-dev \
       python3-dev \
       zeromq-dev && \
-      pip install --upgrade pip && \
-      pip install locustio==$LOCUSTIO_VERSION pyzmq==17.1.0 --no-cache-dir && \
-      apk del build-dependencies
+    apk add --no-cache libzmq && \
+    pip install --upgrade pip && \
+    pip install locustio==$LOCUST_VERSION pyzmq==17.1.2 --no-cache-dir && \
+    apk del build-dependencies
 
 RUN mkdir /scenarios
 

@@ -13,7 +13,7 @@ help:
 	@echo
 
 build:
-	docker build --build-arg LOCUST_VERSION=${TAG} -t ${IMAGE}:${TAG} .
+	docker build --build-arg locust_version=${TAG} -t ${IMAGE}:${TAG} .
 
 clean:
 	# Remove containers with exited status:
@@ -24,7 +24,7 @@ clean:
 	docker rmi `docker images -f dangling=true -q` || true
 
 github:
-	git push
+	git push --set-upstream origin master
 	git tag -a ${TAG} -m 'Version ${TAG}'
 	git push origin --tags
 
